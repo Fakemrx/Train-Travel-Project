@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+    {% block titlename %}
+        Adding city
+    {% endblock %}
+    {% block bodydata %}
+        <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.as_p}}
+            <input type="submit" value="{{ create_or_edit }} post">
+        </form>
+    {% endblock %}

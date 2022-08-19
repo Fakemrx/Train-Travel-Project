@@ -7,7 +7,9 @@
             <div class="col-md">
                 <h1>Page loaded</h1>
                 {% for item in qs %}
-                    <h1>{{ item.name }}</h1>
+                    <p>
+                        <a href="{% url 'cities:city_details' pk=item.pk %}">{{ item.name }}</a>
+                    </p>
                 {% endfor %}
             </div>
         </div>
