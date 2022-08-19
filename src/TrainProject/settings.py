@@ -55,7 +55,8 @@ ROOT_URLCONF = 'TrainProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'src/templates']
+        'DIRS': [BASE_DIR / 'templates',
+                 BASE_DIR / 'cities/templates/cities']
         ,
         'APP_DIRS': True,
         'OPTIONS': {

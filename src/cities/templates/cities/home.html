@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+    {% block titlename %}
+        Cities list
+    {% endblock %}
+    {% block bodydata %}
+        <div class="row">
+            <div class="col-md">
+                <h1>Page loaded</h1>
+                {% for item in qs %}
+                    <h1>{{ item.name }}</h1>
+                {% endfor %}
+            </div>
+        </div>
+    {% endblock %}
