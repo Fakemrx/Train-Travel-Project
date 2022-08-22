@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 class City(models.Model):
-    name = models.CharField(max_length=40, unique=True, verbose_name='Название')
+    name = models.CharField(max_length=40, unique=True, verbose_name='Название города')
 
     def __str__(self):
         return self.name
@@ -14,4 +14,4 @@ class City(models.Model):
         ordering = ['name',]
 
     def get_absolute_url(self):
-        return reverse('cities:city_details', kwargs={'pk': self.pk})
+        return reverse('cities:detail', kwargs={'pk': self.pk})

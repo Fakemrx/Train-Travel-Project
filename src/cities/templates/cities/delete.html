@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+    {% block titlename %}
+        Удаление города
+    {% endblock %}
+    {% block bodydata %}
+        <br>
+        <h3>Вы действительно хотите удалить {{ object }}?</h3>
+        <br>
+        {% include 'form.html' with action_name='Удалить'%}
+    {% endblock %}

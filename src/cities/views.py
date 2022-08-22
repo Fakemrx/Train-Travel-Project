@@ -1,17 +1,12 @@
-from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse_lazy, reverse
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 
-from .city_add_form import CityAddForm
+from .city_form import CityForm
 from .models import City
 
 
-def show_cities(request, pk=None):
-    if pk:
-        city = City.objects.filter(id=pk).first()
-        context = {
-            'city': city
-        }
-        return render(request, 'cities/details.html', context=context)
+def show_cities(request):
     qs = City.objects.all()
     context = {
         'qs': qs
@@ -19,16 +14,23 @@ def show_cities(request, pk=None):
     return render(request, 'cities/home.html', context=context)
 
 
-def add_city(request):
-    # if request.user.is_staff or request.user.is_superuser:
-    #     raise Http404
-    form = CityAddForm(request.POST or None)
-    if form.is_valid():
-        instance = form.save(commit=False)
-        instance.save()
-        return HttpResponseRedirect(instance.get_absolute_url())
-    context = {
-        'form': form,
-        'create_or_edit': 'Create',
-    }
-    return render(request, 'cities/city_add_form.html', context)
+class CityDetailView(DetailView):
+    queryset = City.objects.all()
+    template_name = 'cities/detail.html'
+
+class CityCreateView(CreateView):
+    model = City
+    form_class = CityForm
+    template_name = 'cities/create.html'
+
+
+class CityUpdateView(UpdateView):
+    model = City
+    form_class = CityForm
+    template_name = 'cities/update.html'
+
+
+class CityDeleteView(DeleteView):
+    model = City
+    template_name = 'cities/delete.html'
+    success_url = reverse_lazy('cities:home')

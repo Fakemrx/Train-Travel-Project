@@ -3,14 +3,21 @@
         Cities list
     {% endblock %}
     {% block bodydata %}
+        <br>
+        <h4>Города:</h4>
         <div class="row">
             <div class="col-md">
-                <h1>Page loaded</h1>
                 {% for item in qs %}
-                    <p>
-                        <a href="{% url 'cities:city_details' pk=item.pk %}">{{ item.name }}</a>
-                    </p>
+                        <a href="{% url 'cities:detail' pk=item.pk %}">
+                            <h3>{{ item.name }}</h3>
+                        </a>
                 {% endfor %}
             </div>
         </div>
+        <br>
+        <a href="{% url 'cities:add' %}">
+            <button type="button" class="btn btn-primary">
+                Добавить
+            </button>
+        </a>
     {% endblock %}
