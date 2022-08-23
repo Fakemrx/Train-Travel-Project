@@ -4,14 +4,42 @@
     {% endblock %}
     {% block bodydata %}
         <br>
-        <h4>Города:</h4>
+        <h2>Города:</h2>
         <div class="row">
-            <div class="col-md">
-                {% for item in qs %}
-                        <a href="{% url 'cities:detail' pk=item.pk %}">
-                            <h3>{{ item.name }}</h3>
-                        </a>
-                {% endfor %}
+            <div class="col-md ">
+                <table class="table table-striped">
+                    {% for item in page_obj %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'cities:detail' pk=item.pk %}">
+                                    <h3>{{ item.name }}</h3>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'cities:update' pk=item.pk %}">
+                                    <button type="button" class="btn btn-warning">
+                                        Изменить
+                                    </button>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://google.com/search?q={{ item.name }}">
+                                    <button type="button" class="btn btn-info">
+                                        Подробнее
+                                    </button>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'cities:delete' pk=item.pk %}">
+                                    <button type="button" class="btn btn-danger">
+                                        Удалить
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+                </table>
             </div>
         </div>
         <br>
@@ -20,4 +48,26 @@
                 Добавить
             </button>
         </a>
+        <br><br>
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">F</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                </li>
+            {% endif %}
+            <li class="page-item active" aria-current="page">
+                <a class="page-link" href="">{{ page_obj.number }}</a>
+            </li>
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">L</a>
+                </li>
+            {% endif %}
+        </div>
     {% endblock %}

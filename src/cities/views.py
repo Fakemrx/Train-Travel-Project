@@ -1,17 +1,15 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
-from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView, ListView
 
 from .city_form import CityForm
 from .models import City
 
 
-def show_cities(request):
-    qs = City.objects.all()
-    context = {
-        'qs': qs
-    }
-    return render(request, 'cities/home.html', context=context)
+class ContactListView(ListView):
+    paginate_by = 3
+    model = City
+    template_name = 'cities/home.html'
 
 
 class CityDetailView(DetailView):
