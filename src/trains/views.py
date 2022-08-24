@@ -1,3 +1,38 @@
-from django.shortcuts import render
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView, ListView
 
-# Create your views here.
+from .train_form import TrainForm
+from .models import Train
+
+
+class TrainListView(ListView):
+    paginate_by = 10
+    model = Train
+    template_name = 'trains/home.html'
+
+
+class TrainDetailView(DetailView):
+    queryset = Train.objects.all()
+    template_name = 'trains/detail.html'
+
+
+class TrainCreateView(SuccessMessageMixin, CreateView):
+    model = Train
+    form_class = TrainForm
+    template_name = 'trains/create.html'
+    success_message = 'Вы добавили поезд'
+
+
+class TrainUpdateView(SuccessMessageMixin, UpdateView):
+    model = Train
+    form_class = TrainForm
+    template_name = 'trains/update.html'
+    success_message = 'Вы обновили поезд'
+
+
+class TrainDeleteView(SuccessMessageMixin, DeleteView):
+    model = Train
+    template_name = 'trains/delete.html'
+    success_url = reverse_lazy('trains:home')
+    success_message = 'Вы удалили поезд'

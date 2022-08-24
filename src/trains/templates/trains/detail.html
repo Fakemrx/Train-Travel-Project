@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
     {% block titlename %}
-        {{ city.name }}
+        {{ train.name }}
     {% endblock %}
     {% block bodydata %}
         {% if messages %}
@@ -20,30 +20,26 @@
         {% endif %}
         <div class="row">
             <p class="col-md">
-            <h4 class="my-4">Название города: <strong>{{ city.name }}</strong></h4>
+            <h4 class="my-2">Название: <strong>{{ train.name }}</strong></h4>
+                <h5 class="my-1">Время поездки: {{ train.travel_time }} мин.</h5>
+                <h5 class="my-1">Из города: {{ train.from_city }}</h5>
+                <h5 class="my-1">В город: {{ train.to_city }}</h5>
                 <p>
-                    <a href="https://google.com/search?q={{ city.name }}">
-                        <button type="button" class="btn btn-info" >
-                            Подробнее
-                        </button>
-                    </a>
-                </p>
-                <p>
-                    <a href="{% url 'cities:update' pk=city.pk %}">
-                        <button type="button" class="btn btn-warning">
+                    <a href="{% url 'trains:update' pk=train.pk %}">
+                        <button type="button" class="btn btn-warning mt-2">
                             Изменить
                         </button>
                     </a>
                 </p>
                 <p>
-                    <a href="{% url 'cities:delete' pk=city.pk %}">
+                    <a href="{% url 'trains:delete' pk=train.pk %}">
                         <button type="button" class="btn btn-danger">
                             Удалить
                         </button>
                     </a>
                 </p>
                 <p>
-                    <a href="{% url 'cities:home' %}">
+                    <a href="{% url 'trains:home' %}">
                         <button type="button" class="btn btn-secondary">
                             Назад к списку
                         </button>

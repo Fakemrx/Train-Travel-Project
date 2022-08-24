@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
     {% block titlename %}
-        Список городов
+        Список поездов
     {% endblock %}
     {% block bodydata %}
         {% if messages %}
@@ -18,39 +18,43 @@
                 {% endif %}
             {% endfor %}
         {% endif %}
-        <h3 class="my-4 text-center">ГОРОДА</h3>
+        <h3 class="my-4 text-center">ПОЕЗДА</h3>
         <div class="row my-4">
             <div class="col-md ">
                 <table class="table table-striped">
                     <tr>
-                        <td><h5><strong>Название</strong></h5></td>
-                        <td></td>
+                        <td><h5><strong>Название</strong></h4></td>
+                        <td><h5><strong>Время поездки</strong></h5></td>
+                        <td><h5><strong>От</strong></h5></td>
+                        <td><h5><strong>До</strong></h5></td>
                         <td></td>
                         <td></td>
                     </tr>
                     {% for item in page_obj %}
                         <tr>
                             <td>
-                                <a href="{% url 'cities:detail' pk=item.pk %}">
+                                <a href="{% url 'trains:detail' pk=item.pk %}">
                                     <h5>{{ item.name }}</h5>
                                 </a>
                             </td>
                             <td>
-                                <a href="{% url 'cities:update' pk=item.pk %}">
+                                <h5>{{ item.travel_time }} мин.</h5>
+                            </td>
+                            <td>
+                                <h5>{{ item.from_city }}</h5>
+                            </td>
+                            <td>
+                                <h5>{{ item.to_city }}</h5>
+                            </td>
+                            <td>
+                                <a href="{% url 'trains:update' pk=item.pk %}">
                                     <button type="button" class="btn btn-warning">
                                         Изменить
                                     </button>
                                 </a>
                             </td>
                             <td>
-                                <a href="https://google.com/search?q={{ item.name }}">
-                                    <button type="button" class="btn btn-info">
-                                        Подробнее
-                                    </button>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{% url 'cities:delete' pk=item.pk %}">
+                                <a href="{% url 'trains:delete' pk=item.pk %}">
                                     <button type="button" class="btn btn-danger">
                                         Удалить
                                     </button>
@@ -63,7 +67,7 @@
             </div>
         </div>
         <div class="text-center">
-            <a href="{% url 'cities:add' %}">
+            <a href="{% url 'trains:add' %}">
                 <button type="button" class="btn btn-primary my-0">
                     Добавить
                 </button>
