@@ -1,5 +1,6 @@
 from django import forms
-from .models import Train
+from trains.models import Train
+from cities.models import City
 
 
 class TrainForm(forms.ModelForm):
@@ -7,24 +8,19 @@ class TrainForm(forms.ModelForm):
         'class': 'form-control',
         'placeholder': 'Введите название поезда',
     }))
-    travel_time = forms.IntegerField(label='Время', widget=forms.TextInput(attrs={
+    travel_time = forms.IntegerField(label='Время', widget=forms.NumberInput(attrs={
         'class': 'form-control',
         'placeholder': 'Введите время в пути',
     }))
-    from_city = forms.ChoiceField(label='Город', widget=forms.TextInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'Выберите начальный город',
-    }))
-    to_city = forms.ChoiceField(label='Город', widget=forms.TextInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'Выберите конечный город',
-    }))
+    from_city = forms.ModelChoiceField(label='Откуда', queryset=City.objects.all(), widget=forms.Select(
+        attrs={'class': 'form-control'}
+        )
+    )
+    to_city = forms.ModelChoiceField(label='Куда', queryset=City.objects.all(), widget=forms.Select(
+        attrs={'class': 'form-control'}
+        )
+    )
 
     class Meta:
         model = Train
-        fields = [
-            'name',
-            'travel_time',
-            'from_city',
-            'to_city'
-        ]
+        fields = '__all__'

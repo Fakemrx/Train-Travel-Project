@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse
 
 
 class Train(models.Model):
@@ -14,7 +15,7 @@ class Train(models.Model):
                                 )
 
     def __str__(self):
-        return f'Поезд №{self.name} отправляется из {self.from_city} в {self.to_city}.'
+        return f'Поезд №{self.name}. Едет из {self.from_city} в {self.to_city}'
 
     def clean(self):
         if self.from_city == self.to_city:
@@ -27,6 +28,9 @@ class Train(models.Model):
     def save(self, *args, **kwargs):
         self.clean()
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('trains:detail', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = 'Поезд'
