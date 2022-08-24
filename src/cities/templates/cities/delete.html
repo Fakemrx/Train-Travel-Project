@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends '../../../templates/base.html' %}
     {% block titlename %}
         Удаление города
     {% endblock %}
@@ -8,5 +8,5 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         <h3>Вы действительно хотите удалить {{ object }}?</h3>
-        {% include 'form.html' with action_name='Удалить'%}
+        {% include '../../../templates/form.html' with action_name='Удалить'%}
     {% endblock %}

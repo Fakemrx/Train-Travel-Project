@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cities',
+    'trains',
 ]
 
 MIDDLEWARE = [
@@ -55,8 +56,8 @@ ROOT_URLCONF = 'TrainProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates',
-                 BASE_DIR / 'cities/templates/cities']
+        'DIRS': [BASE_DIR / 'src/templates',
+                 BASE_DIR / 'src/cities/templates/cities']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
