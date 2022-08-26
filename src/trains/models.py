@@ -8,10 +8,12 @@ class Train(models.Model):
                             verbose_name='Название поезда')
     travel_time = models.PositiveSmallIntegerField(verbose_name='Время в пути')
     from_city = models.ForeignKey('cities.City', related_name='from_city_set',
-                                  on_delete=models.CASCADE, blank=True, null=True
+                                  on_delete=models.CASCADE, verbose_name='Из какого города',
+                                  null=True, blank=True
                                   )
     to_city = models.ForeignKey('cities.City', related_name='to_city_set',
-                                on_delete=models.CASCADE, blank=True, null=True
+                                on_delete=models.CASCADE, verbose_name='В какой город',
+                                null=True, blank=True
                                 )
 
     def __str__(self):

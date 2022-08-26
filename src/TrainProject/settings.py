@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cities',
     'trains',
+    'routes',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'templates',
                  BASE_DIR / 'cities/templates/cities',
-                 BASE_DIR / 'trains/templates/trains'
+                 BASE_DIR / 'trains/templates/trains',
+                 BASE_DIR / 'routes/templates/routes',
                  ]
         ,
         'APP_DIRS': True,
