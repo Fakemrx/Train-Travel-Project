@@ -20,6 +20,11 @@ class Route(models.Model):
     def __str__(self):
         return f'Маршрут {self.name}. Едет из {self.from_city} в {self.to_city}'
 
+    class Meta:
+        verbose_name = 'Маршрут'
+        verbose_name_plural = 'Маршруты'
+        ordering = ['travel_time_total']
+        
     # def clean(self):
     #     if self.from_city == self.to_city:
     #         raise ValidationError('Измените конечную точку назначения')
@@ -34,8 +39,3 @@ class Route(models.Model):
     #
     # def get_absolute_url(self):
     #     return reverse('trains:detail', kwargs={'pk': self.pk})
-
-    class Meta:
-        verbose_name = 'Маршрут'
-        verbose_name_plural = 'Маршруты'
-        ordering = ['travel_time_total']
