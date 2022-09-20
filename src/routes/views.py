@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render
 from routes.route_form import RouteForm
+from routes.utils import get_routes
 
 
 def home(request):
@@ -17,11 +18,18 @@ def find_route(request):
         context = {
             'form': form
         }
-        return render(request, 'routes/home.html', context=context)
+        if form.is_valid():
+            try:
+                context = get_routes(request, form)
+            except ValueError as err:
+                messages.error(request, err)
+            # return render(request, 'routes/home.html', context=context)
+        # return render(request, 'routes/home.html', context=context)
     else:
         form = RouteForm()
         messages.error(request, 'Не удалось найти путь')
         context = {
             'form': form
         }
-        return render(request, 'routes/home.html', context=context)
+        # return render(request, 'routes/home.html', context=context)
+    return render(request, 'routes/home.html', context=context)

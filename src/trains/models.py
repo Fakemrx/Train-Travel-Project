@@ -1,17 +1,18 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
+from cities.models import City
 
 
 class Train(models.Model):
     name = models.CharField(max_length=50, unique=True,
                             verbose_name='Название поезда')
     travel_time = models.PositiveSmallIntegerField(verbose_name='Время в пути')
-    from_city = models.ForeignKey('cities.City', related_name='from_city_set',
+    from_city = models.ForeignKey(City, related_name='from_city_set',
                                   on_delete=models.CASCADE, verbose_name='Из какого города',
                                   null=True, blank=True
                                   )
-    to_city = models.ForeignKey('cities.City', related_name='to_city_set',
+    to_city = models.ForeignKey(City, related_name='to_city_set',
                                 on_delete=models.CASCADE, verbose_name='В какой город',
                                 null=True, blank=True
                                 )
