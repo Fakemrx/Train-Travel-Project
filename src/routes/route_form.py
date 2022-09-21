@@ -14,8 +14,9 @@ class RouteForm(forms.Form):
                                             required=False, widget=forms.SelectMultiple(
             attrs={'class': 'form-control js-multi-picker'}
         ))
-    travelling_time = forms.IntegerField(label='Общ. время', widget=forms.NumberInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'Введите время в пути',
-    }
-    ))
+    travelling_time = forms.IntegerField(label='Общ. время', required=False,
+                                         widget=forms.NumberInput(attrs={
+                                             'class': 'form-control',
+                                             'placeholder': 'Введите время в пути',
+                                         }
+                                         ))

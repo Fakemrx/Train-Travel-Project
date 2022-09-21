@@ -24,18 +24,3 @@ class Route(models.Model):
         verbose_name = 'Маршрут'
         verbose_name_plural = 'Маршруты'
         ordering = ['travel_time_total']
-        
-    # def clean(self):
-    #     if self.from_city == self.to_city:
-    #         raise ValidationError('Измените конечную точку назначения')
-    #     qs = Train.objects.filter(travel_time=self.travel_time, from_city=self.from_city,
-    #                               to_city=self.to_city).exclude(pk=self.pk)
-    #     if qs.exists():
-    #         raise ValidationError('Измените время в пути')
-    #
-    # def save(self, *args, **kwargs):
-    #     self.clean()
-    #     super().save(*args, **kwargs)
-    #
-    # def get_absolute_url(self):
-    #     return reverse('trains:detail', kwargs={'pk': self.pk})
