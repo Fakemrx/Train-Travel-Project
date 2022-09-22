@@ -23,13 +23,10 @@ def find_route(request):
                 context = get_routes(request, form)
             except ValueError as err:
                 messages.error(request, err)
-            # return render(request, 'routes/home.html', context=context)
-        # return render(request, 'routes/home.html', context=context)
     else:
         form = RouteForm()
         messages.error(request, 'Не удалось найти путь')
         context = {
             'form': form
         }
-        # return render(request, 'routes/home.html', context=context)
     return render(request, 'routes/home.html', context=context)

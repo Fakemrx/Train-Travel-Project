@@ -18,7 +18,7 @@ class Train(models.Model):
                                 )
 
     def __str__(self):
-        return f'Поезд №{self.name}. Едет из {self.from_city} в {self.to_city}'
+        return f'Поезд №{self.name}. Едет из г. {self.from_city} в г. {self.to_city}'
 
     def clean(self):
         if self.from_city == self.to_city:
