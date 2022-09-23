@@ -7,7 +7,7 @@ from .models import Train
 
 
 class TrainListView(ListView):
-    paginate_by = 10
+    paginate_by = 9
     model = Train
     template_name = 'trains/home.html'
 
