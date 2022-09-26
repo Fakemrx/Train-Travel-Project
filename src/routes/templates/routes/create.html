@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block titlename %}
+    Добавление маршрута
+{% endblock %}
+{% block bodydata %}
+    <div class="row">
+        <div class="col-md-8">
+            <form class="mt-4" method="POST" action="{% url 'save_route' %}"
+                  enctype="multipart/form-data">{% csrf_token %}
+                {% for field in form %}
+                    <div class="fieldWrapper">
+                        {{ field.errors }}
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <input type="submit" class="btn btn-primary mt-3" value="Добавить">
+            </form>
+        </div>
+    </div>
+{% endblock %}
