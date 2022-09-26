@@ -11,7 +11,7 @@ class City(models.Model):
     class Meta:
         verbose_name = 'Город'
         verbose_name_plural = 'Города'
-        ordering = ['name',]
+        ordering = ['name', ]
 
-    def get_absolute_url(self):
-        return reverse('cities:detail', kwargs={'pk': self.pk})
+    # def get_absolute_url(self):
+    #     return reverse('cities:home', kwargs={'pk': self.pk})

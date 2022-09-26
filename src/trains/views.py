@@ -21,6 +21,7 @@ class TrainCreateView(SuccessMessageMixin, CreateView):
     model = Train
     form_class = TrainForm
     template_name = 'trains/create.html'
+    success_url = reverse_lazy('trains:home')
     success_message = 'Вы добавили поезд'
 
 
@@ -28,6 +29,7 @@ class TrainUpdateView(SuccessMessageMixin, UpdateView):
     model = Train
     form_class = TrainForm
     template_name = 'trains/update.html'
+    success_url = reverse_lazy('trains:home')
     success_message = 'Вы обновили поезд'
 
 

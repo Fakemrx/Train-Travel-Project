@@ -8,7 +8,7 @@ from .models import City
 
 
 class CityListView(ListView):
-    paginate_by = 10
+    paginate_by = 9
     model = City
     template_name = 'cities/home.html'
 
@@ -22,6 +22,7 @@ class CityCreateView(SuccessMessageMixin, CreateView):
     model = City
     form_class = CityForm
     template_name = 'cities/create.html'
+    success_url = reverse_lazy('cities:home')
     success_message = 'Вы добавили город'
 
 
@@ -29,6 +30,7 @@ class CityUpdateView(SuccessMessageMixin, UpdateView):
     model = City
     form_class = CityForm
     template_name = 'cities/update.html'
+    success_url = reverse_lazy('cities:home')
     success_message = 'Вы обновили город'
 
 

@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-    {% block titlename %}
-        Удаление поезда
-    {% endblock %}
-    {% block bodydata %}
-        <div class="alert alert-warning alert-dismissible fade show my-4" role="alert">
-            <strong>Внимание:</strong> Это действие необратимо!
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <h3>Вы действительно хотите удалить {{ object }}?</h3>
-        {% include 'form.html' with action_name='Удалить'%}
-    {% endblock %}
+{% block titlename %}
+    Удаление поезда
+{% endblock %}
+{% block bodydata %}
+    <div class="alert alert-warning alert-dismissible fade show my-4" role="alert">
+        <strong>Внимание:</strong> Это действие необратимо!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <h4>Вы действительно хотите удалить поезд {{ object.name }}?</h4>
+    {% include 'form.html' with action_name='Удалить' %}
+{% endblock %}

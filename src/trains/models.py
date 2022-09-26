@@ -32,8 +32,8 @@ class Train(models.Model):
         self.clean()
         super().save(*args, **kwargs)
 
-    def get_absolute_url(self):
-        return reverse('trains:detail', kwargs={'pk': self.pk})
+    # def get_absolute_url(self):
+    #     return reverse('trains:detail', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = 'Поезд'
