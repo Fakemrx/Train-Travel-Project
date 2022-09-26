@@ -1,1 +1,1 @@
-web: gunicorn TrainProject.wsgi
+web: gunicorn TrainProject.wsgi --log-file -
