@@ -1,6 +1,8 @@
 {% url 'trains:home' as trains_home_url %}
 {% url 'cities:home' as cities_home_url %}
 {% url 'routes_list' as routes_home_url %}
+{% url 'trains:add' as trains_create_url %}
+{% url 'cities:add' as cities_create_url %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,15 +24,25 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == cities_home_url %}active{% endif %}" aria-current="page"
-                       href="{% url 'cities:home' %}">Города</a>
+                       href="{{ cities_home_url }}">Города</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == trains_home_url %}active{% endif %}" aria-current="page"
-                       href="{% url 'trains:home' %}">Поезда</a>
+                       href="{{ trains_home_url }}">Поезда</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == routes_home_url %}active{% endif %}" aria-current="page"
-                       href="{% url 'routes_list' %}">Маршруты</a>
+                       href="{{ routes_home_url }}">Маршруты</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Добавить
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="{{ cities_create_url }}">Город</a></li>
+                        <li><a class="dropdown-item" href="{{ trains_create_url }}">Поезд</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
