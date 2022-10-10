@@ -12,4 +12,5 @@ urlpatterns = [
     path('save_route/', save_route, name='save_route'),
     path('list/', RouteListView.as_view(), name='routes_list'),
     path('list/delete/<int:pk>/', RouteDeleteView.as_view(), name='route_delete'),
+    path('accounts/', include(('accounts.urls', 'accounts'))),
 ]

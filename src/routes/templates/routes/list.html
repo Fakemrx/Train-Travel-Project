@@ -23,13 +23,15 @@
                             {{ train.from_city }} - {{ train.to_city }}
                         </p>
                     {% endfor %}
-                    <div class="text-center">
-                        <a style="text-decoration: none" href="{% url 'route_delete' pk=item.pk %}">
-                            <button type="button" class="btn btn-danger">
-                                Удалить
-                            </button>
-                        </a>
-                    </div>
+                    {% if user.is_authenticated %}
+                        <div class="text-center">
+                            <a style="text-decoration: none" href="{% url 'route_delete' pk=item.pk %}">
+                                <button type="button" class="btn btn-danger">
+                                    Удалить
+                                </button>
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
@@ -37,11 +39,11 @@
     <div class="pagination justify-content-center my-4">
         {% if page_obj.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="?page=1">1...</a>
+                <a class="page-link" href="?page=1">1</a>
             </li>
             <li class="page-item">
                 <a class="page-link"
-                   href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                   href="?page={{ page_obj.previous_page_number }}">&lt</a>
             </li>
         {% endif %}
         <li class="page-item active" aria-current="page">
@@ -49,11 +51,11 @@
         </li>
         {% if page_obj.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">&gt</a>
             </li>
             <li class="page-item">
                 <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
-                    ...{{ page_obj.paginator.num_pages }}
+                    {{ page_obj.paginator.num_pages }}
                 </a>
             </li>
         {% endif %}

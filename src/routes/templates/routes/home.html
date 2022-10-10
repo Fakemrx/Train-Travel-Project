@@ -28,10 +28,12 @@
                                 <p>{{ train }} - <strong>{{ train.travel_time }}</strong> мин.</p>
                             {% endfor %}
                         </p>
-                        <button type="submit"
-                                class="btn {% if route.total_time == min_time %}btn-success {% else %}btn-primary{% endif %}">
-                            Сохранить
-                        </button>
+                        {% if user.is_authenticated %}
+                            <button type="submit"
+                                    class="btn {% if route.total_time == min_time %}btn-success {% else %}btn-primary{% endif %}">
+                                Сохранить
+                            </button>
+                        {% endif %}
                     </div>
                 </div>
             </form>
