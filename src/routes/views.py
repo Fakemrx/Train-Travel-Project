@@ -1,6 +1,9 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DeleteView
 from routes.route_form import RouteForm, RouteModelForm
 from routes.utils import get_routes
 
@@ -38,13 +41,13 @@ def find_route(request):
     return render(request, 'routes/home.html', context=context)
 
 
+@login_required
 def add_route(request):
     if request.method == 'POST':
         context = {}
         data = request.POST
         if data:
             total_time = int(data['total_time'])
-            print(f'************************{total_time}*********************')
             from_city_id = int(data['from_city'])
             to_city_id = int(data['to_city'])
             trains = data['trains'].split(',')
@@ -65,6 +68,7 @@ def add_route(request):
     return redirect('/')
 
 
+@login_required
 def save_route(request):
     if request.method == 'POST':
         form = RouteModelForm(request.POST)
@@ -82,3 +86,10 @@ class RouteListView(ListView):
     paginate_by = 9
     model = Route
     template_name = 'routes/list.html'
+
+
+class RouteDeleteView(LoginRequiredMixin, DeleteView):
+    model = Route
+    template_name = 'routes/delete.html'
+    success_url = reverse_lazy('home')
+    success_message = 'Вы удалили маршрут'
